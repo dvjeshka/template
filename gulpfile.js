@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
-    rename = require("gulp-rename");
     reload = browserSync.reload;
 
 var path = {
@@ -88,10 +87,10 @@ gulp.task('style:build', function () {
         .pipe(rigger())
         /*    .pipe(sourcemaps.init())*/
         .pipe(sass({
-            includePaths: ['src/style/'],
+            /*includePaths: ['src/style/'],
             outputStyle: 'compressed',
             sourceMap: true,
-            errLogToConsole: true
+            errLogToConsole: true*/
         }))
         .pipe(prefixer())
       /*  .pipe(cssmin())*/
