@@ -8,7 +8,15 @@ body,
   min-height: 100%;
   padding-bottom: 240px;
 }
-.footer {
-  height: 80px;
-  margin-top: -80px;
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+
+.contain  {
+  width: 930px;
+  padding: 0 40px;
+  margin: 0 auto;
 }
