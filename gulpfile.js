@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
+    rename = require("gulp-rename");
     reload = browserSync.reload;
 
 var path = {
@@ -26,6 +27,7 @@ var path = {
         html: 'src/*.html',
         js: 'src/js/main.js',
         style: 'src/style/main.scss',
+        plugin: 'src/style/plugins.css',
         img: 'src/img/**/*.*',
         fonts: 'src/fonts/**/*.*'
     },
@@ -67,16 +69,24 @@ gulp.task('html:build', function () {
 gulp.task('js:build', function () {
     gulp.src(path.src.js) 
         .pipe(rigger()) 
-        .pipe(sourcemaps.init()) 
+     /*   .pipe(sourcemaps.init()) */
         .pipe(uglify()) 
-        .pipe(sourcemaps.write()) 
+     /*   .pipe(sourcemaps.write()) */
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });
 
 gulp.task('style:build', function () {
-    gulp.src(path.src.style) 
-        .pipe(sourcemaps.init())
+    gulp.src(path.src.plugin)
+        .pipe(rigger())
+        .pipe(prefixer())
+        .pipe(gulp.dest(path.build.css))
+        .pipe(reload({stream: true}));
+
+
+    gulp.src(path.src.style)
+        .pipe(rigger())
+        /*    .pipe(sourcemaps.init())*/
         .pipe(sass({
             includePaths: ['src/style/'],
             outputStyle: 'compressed',
@@ -84,20 +94,22 @@ gulp.task('style:build', function () {
             errLogToConsole: true
         }))
         .pipe(prefixer())
-        .pipe(cssmin())
-        .pipe(sourcemaps.write())
+      /*  .pipe(cssmin())*/
+       /* .pipe(sourcemaps.write())*/
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
+
+
 });
 
 gulp.task('image:build', function () {
-    gulp.src(path.src.img) 
-        .pipe(imagemin({
+    gulp.src(path.src.img)
+   /*     .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()],
             interlaced: true
-        }))
+        }))*/
         .pipe(gulp.dest(path.build.img))
         .pipe(reload({stream: true}));
 });

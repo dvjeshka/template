@@ -12,6 +12,10 @@
   "license": "MIT",
   "dependencies": {
     "normalize.css": "*",
-    "jquery": "2.*"
+    "jquery": "2.*",
+    "slick-carousel": "^1.5.9",
+    "fancybox": "^2.1.5",
+    "jquery-form-styler": "jquery.form-styler#^1.7.4",
+    "jquery.scroolly": "^0.0.1"
   }
 }
