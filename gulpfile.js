@@ -12,7 +12,8 @@ var gulp = require('gulp'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
     browserSync = require("browser-sync"),
-    reload = browserSync.reload;
+    reload = browserSync.reload,
+    newer = require('gulp-newer');
 
 var path = {
     build: {
@@ -103,6 +104,7 @@ gulp.task('style:build', function () {
 
 gulp.task('image:build', function () {
     gulp.src(path.src.img)
+        .pipe(newer(path.build.img))
    /*     .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
