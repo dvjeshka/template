@@ -17,4 +17,5 @@
     Custom
  */
 //= partials/helper.js
+//= partials/form.js
 //= partials/popup.js
