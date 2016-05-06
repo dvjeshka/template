@@ -1,0 +1,32 @@
+.menu {
+  /* position: relative;*/
+
+}
+
+.menu__list {
+  font-size: 0;
+}
+
+.menu__item {
+  @extend %inb;
+}
+
+.menu__link{
+  text-decoration: none;
+
+  font-size: 18px;
+  display: block;
+  background: #252525;
+  color:white;
+  border-left: 1px solid #464646 ;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  text-align: center;
+
+}
+
+
+
+.menu__link:hover{
+  background: #464646;
+}

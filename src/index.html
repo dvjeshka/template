@@ -1,68 +1,8 @@
 //= template/head.html
 //= template/popup.html
 
-<form action="/" method="post" class="form" id="form">
-    <div class="form__row">
-        <label for="inputId1" class="form__label">Размер блока</label>
-        <select class="js-styler form__input" id="inputId1" name="inputId1" placeholder="выберите размер">
-            <option>600х300х200</option>
-            <option>600Х300Х100</option>
-            <option>600Х400Х200</option>
-            <option>600Х200Х200</option>
-            <option>600Х200Х250</option>
-            <option>600Х250Х300</option>
-        </select>
-    </div>
-    <div class="form__row">
-        <label for="inputId3" class="form__label">Плотность</label>
-        <select class="js-styler form__input" id="inputId3" name="inputId3">
-            <option>D-400</option>
-            <option>D-500</option>
-            <option>D-600</option>
-
-        </select>
-    </div>
-    <div class="form__row">
-        <label for="inputId2" class="form__label">Количество</label>
-        <input class="form__input form__input-name" id="inputId2" name="inputId2" type="number" value="1" min="1">
-    </div>
-
-    <div class="form__row radios">
-        <label class="label"><input type="radio" class="js-styler radio1" name="radio" value="1">Самовызов</label>
-        <label class="label"><input type="radio" class="js-styler radio2" name="radio" value="2" checked>Доставка</label>
-    </div>
 
 
-    <div class="form__row form__row-address">
-        <label for="name" class="form__label">Адресс доставки</label>
-        <input class="form__input form__input-address" id="input-address" name="input-address" type="text">
-    </div>
-
-    <div class="form__row">
-        <label for="form__input-phone" class="form__label">Телефон</label>
-        <input class="form__input form__input-phone" id="form__input-phone" name="mobil-phone" type="text">
-    </div>
-    <div class="form__row">
-        <label for="form__input-email" class="form__label">Email</label>
-        <input class="form__input form__input-email" id="form__input-email" name="email" type="email">
-    </div>
-    <div class="form__row">
-        <label for="name" class="form__label">Наименование организации</label>
-        <input class="form__input form__input-name" id="name" name="name" type="text">
-    </div>
-    <div class="form__row">
-        <label for="name" class="form__label">Реквизиты</label>
-        <input class="form__input form__input-name" id="rek" name="rek" type="text">
-    </div>
-    <div class="form__row">
-        <input type="file" class="js-styler form__file" data-browse="Прикрепить файл">
-    </div>
-
-
-    <div class="form__row">
-        <input type="submit" class="btn form__submit" value="Получить расчет стоимости">
-    </div>
-</form>
 
 //= template/footer.html
 
