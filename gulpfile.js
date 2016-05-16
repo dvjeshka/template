@@ -60,18 +60,18 @@ gulp.task('clean', function (cb) {
 });
 
 gulp.task('html:build', function () {
-    gulp.src(path.src.html) 
+    gulp.src(path.src.html)
         .pipe(rigger())
         .pipe(gulp.dest(path.build.html))
         .pipe(reload({stream: true}));
 });
 
 gulp.task('js:build', function () {
-    gulp.src(path.src.js) 
-        .pipe(rigger()) 
-     /*   .pipe(sourcemaps.init()) */
-        .pipe(uglify()) 
-     /*   .pipe(sourcemaps.write()) */
+    gulp.src(path.src.js)
+        .pipe(rigger())
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });
@@ -86,16 +86,16 @@ gulp.task('style:build', function () {
 
     gulp.src(path.src.style)
         .pipe(rigger())
-        /*    .pipe(sourcemaps.init())*/
+            .pipe(sourcemaps.init())
         .pipe(sass({
-            /*includePaths: ['src/style/'],
+            includePaths: ['src/style/'],
             outputStyle: 'compressed',
             sourceMap: true,
-            errLogToConsole: true*/
+            errLogToConsole: true
         }))
         .pipe(prefixer())
       /*  .pipe(cssmin())*/
-       /* .pipe(sourcemaps.write())*/
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 
@@ -105,12 +105,12 @@ gulp.task('style:build', function () {
 gulp.task('image:build', function () {
     gulp.src(path.src.img)
         .pipe(newer(path.build.img))
-   /*     .pipe(imagemin({
+        .pipe(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()],
             interlaced: true
-        }))*/
+        }))
         .pipe(gulp.dest(path.build.img))
         .pipe(reload({stream: true}));
 });

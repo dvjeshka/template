@@ -4,11 +4,12 @@
 }
 
 .menu__list {
-  font-size: 0;
+  display: table;
+  width: 100%;
 }
 
 .menu__item {
-  @extend %inb;
+  display: table-cell;
 }
 
 .menu__link{

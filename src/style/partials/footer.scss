@@ -1,4 +1,9 @@
+
+.wrapper__footer,.footer {
+  min-height: 80px;
+}
+
 .footer {
-  height: 80px;
   margin-top: -80px;
+  background: gray;
 }

@@ -22,16 +22,11 @@ table {border-collapse: collapse; border-spacing: 0;border: 0;}
 table td{vertical-align: top;}
 /* end reset */
 
-html,
-body,
+
 .wrapper {
-  height: 100%;
-}
-.wrapper__content {
-  box-sizing: border-box;
   min-height: 100%;
-  padding-bottom: 240px;
 }
+
 
 ul {
   list-style-type: none;
