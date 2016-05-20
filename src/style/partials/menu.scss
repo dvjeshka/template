@@ -10,24 +10,27 @@
 
 .menu__item {
   display: table-cell;
+  background: black;
+  padding: 5px;
+  text-align: center;
+}
+
+.menu__item:hover,.menu__item-active{
+  background: #464646;
 }
 
 .menu__link{
   text-decoration: none;
-
   font-size: 18px;
-  display: block;
-  background: #252525;
   color:white;
-  border-left: 1px solid #464646 ;
-  padding: 30px 10px;
-  box-sizing: border-box;
-  text-align: center;
 
+
+}
+
+.menu__link:hover {
+  text-decoration: none;
 }
 
 
 
-.menu__link:hover{
-  background: #464646;
-}
+
