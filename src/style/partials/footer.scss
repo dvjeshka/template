@@ -7,3 +7,26 @@
   margin-top: -80px;
   background: gray;
 }
+
+.footer__cop,.footer__juno {
+  @extend %inb;
+  width: 49%;
+}
+
+.footer__cop {
+  text-align: left;
+}
+
+.footer__juno {
+  text-align: right;
+}
+
+.footer__juno .link {
+  color:#252525;
+  text-decoration: underline;
+}
+
+
+.footer__juno .link:hover {
+  text-decoration: none;
+}
