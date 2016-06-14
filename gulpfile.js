@@ -14,7 +14,6 @@ var gulp = require('gulp'),
     reload = browserSync.reload,
     newer = require('gulp-newer'),
     postcss = require('gulp-postcss'),
-    csso = require('postcss-csso'),
     cssbeautify = require('gulp-cssbeautify'),
     concat = require('gulp-concat'),
     uncss = require('gulp-uncss'),
@@ -122,7 +121,6 @@ gulp.task('style:build', function () {
         /*  .pipe(uncss({
          html: [path.build.html+'*.html']
          }))*/
-        /*     .pipe(postcss(processors))*/
         .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
         .pipe(prefixer({browsers: ['last 30 version']}))
         .pipe(csscomb())
