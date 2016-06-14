@@ -23,11 +23,6 @@ var gulp = require('gulp'),
 
 
 
-var processors = [
-    csso({ restructure: true,sourceMap: true})
-
-];
-
 
 var path = {
     build: {

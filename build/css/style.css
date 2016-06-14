@@ -558,7 +558,7 @@ body {
   cursor: default;
 }
 .overlay, .popup {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -717,9 +717,6 @@ h1 {
 }
 .footer__juno .link:hover, .icon-close {
   text-decoration: none;
-}
-.overflow-hidden {
-  overflow: hidden;
 }
 .popup {
   display: block;
