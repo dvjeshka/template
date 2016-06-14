@@ -191,4 +191,3 @@ checkHash();
 $(window).bind('hashchange', function() {
     checkHash();
 });
-//# sourceMappingURL=main.js.map

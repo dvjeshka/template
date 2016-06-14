@@ -7,8 +7,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     rigger = require('gulp-rigger'),
-    cssmin = require('gulp-minify-css'),
-    cssnano = require('gulp-cssnano'),
     imagemin = require('gulp-imagemin'),
     pngquant = require('imagemin-pngquant'),
     rimraf = require('rimraf'),
@@ -17,10 +15,19 @@ var gulp = require('gulp'),
     newer = require('gulp-newer'),
     postcss = require('gulp-postcss'),
     csso = require('postcss-csso'),
-    postcssMergeLonghand = require('postcss-merge-longhand'),
     cssbeautify = require('gulp-cssbeautify'),
+    concat = require('gulp-concat'),
+    uncss = require('gulp-uncss'),
     csscomb = require('gulp-csscomb'),
-    concat = require('gulp-concat');
+    cleanCSS = require('gulp-clean-css');
+
+
+
+
+var processors = [
+    csso({ restructure: true,sourceMap: true})
+
+];
 
 
 var path = {
@@ -59,11 +66,6 @@ var config = {
     logPrefix: "Frontend_Devil"
 };
 
-var processors = [
-    /*postcssMergeLonghand,*/csso({ restructure: true,sourceMap: true})
-
-];
-
 gulp.task('webserver', function () {
     browserSync(config);
 });
@@ -80,60 +82,57 @@ gulp.task('html:build', function () {
 });
 
 gulp.task('js:build', function () {
-
-    gulp.src("bower_components/jquery/dist/jquery.min.js")
+    gulp.src('bower_components/jquery/dist/jquery.min.js')
         .pipe(gulp.dest(path.build.js));
-
 
     gulp.src(path.src.js)
         .pipe(rigger())
-        .pipe(sourcemaps.init())
-      /*  .pipe(uglify())*/
-        .pipe(sourcemaps.write('./'))
+
+        /*  .pipe(uglify())*/
+
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });
 
 gulp.task('style:build', function () {
     gulp.src(path.src.plugin)
-        .pipe(sourcemaps.init())
         .pipe(rigger())
-        /*.pipe(cssnano({core:false},{autoprefixer:false}))*/
-        /*.pipe(prefixer({browsers: ['last 30 version']}))*/
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 
 
     gulp.src(path.src.style)
-        .pipe(sourcemaps.init())
         .pipe(rigger())
+        .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: ['src/style/'],
             outputStyle: 'compressed',
             sourceMap: true,
             errLogToConsole: true
         }))
-    /*    .pipe(cssnano({core:false},{autoprefixer:false}))*/
-     /*   .pipe(prefixer({browsers: ['last 30 version']}))*/
-        /*.pipe(postcss(processors))*/
-        .pipe(sourcemaps.write('./'))
+
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.build.css))
         .pipe(reload({stream: true}));
 
-    gulp.src([path.build.css+'/plugin.css',path.build.css+'/main.css'])
-        .pipe(concat('all.css'))
-        .pipe(postcss(processors))
-       /* .pipe(cssnano({autoprefixer:false}))*/
-        .pipe(prefixer({browsers: ['last 30 version']}))
-       /* .pipe(cssbeautify({
-            indent: '   ',
-            /!*openbrace: 'separate-line',*!/
-            autosemicolon: true
-        }))*/
-        .pipe(csscomb())
-        .pipe(gulp.dest(path.build.css));
+    gulp.src([path.build.css+'/plugins.css',path.build.css+'/main.css'])
 
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest(path.build.css))
+        /*  .pipe(uncss({
+         html: [path.build.html+'*.html']
+         }))*/
+        /*     .pipe(postcss(processors))*/
+        .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
+        .pipe(prefixer({browsers: ['last 30 version']}))
+        .pipe(csscomb())
+        /*  .pipe(cssbeautify({
+         indent: '   ',
+         /!*openbrace: 'separate-line',*!/
+         autosemicolon: true
+         }))*/
+        .pipe(gulp.dest(path.build.css))
+        .pipe(reload({stream: true}));
 });
 
 gulp.task('image:build', function () {
