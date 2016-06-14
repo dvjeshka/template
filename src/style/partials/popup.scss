@@ -1,8 +1,5 @@
 /*Popup*/
 
-.overflow-hidden {
-  overflow:hidden;
-}
 
 .popup {
   display: block;
@@ -10,7 +7,7 @@
   visibility: hidden;
   transition: opacity .5s , top .5s;
   overflow: auto;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   z-index: 999999;
@@ -48,7 +45,7 @@
   -webkit-transition: opacity .5s;
   transition: opacity .5s;
   cursor: default;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   left: 0; }
