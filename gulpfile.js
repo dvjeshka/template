@@ -13,8 +13,9 @@ var gulp = require('gulp'),
     browserSync = require("browser-sync"),
     reload = browserSync.reload,
     newer = require('gulp-newer'),
+    plumber = require('gulp-plumber'),
     postcss = require('gulp-postcss'),
-
+    postcssPartialImport = require('postcss-partial-import'),
     cssbeautify = require('gulp-cssbeautify'),
     concat = require('gulp-concat'),
     uncss = require('gulp-uncss'),
@@ -25,7 +26,7 @@ var gulp = require('gulp'),
 
 
 var processors = [
-
+    postcssPartialImport
 
 ];
 
@@ -87,52 +88,62 @@ gulp.task('js:build', function () {
 
     gulp.src(path.src.js)
         .pipe(rigger())
-
         /*  .pipe(uglify())*/
-
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });
 
 gulp.task('style:build', function () {
-    gulp.src(path.src.plugin)
-        .pipe(rigger())
+ /*   gulp.src(path.src.plugin)
+        .pipe(plumber())
+        .pipe(postcss(processors))
+        /!*.pipe(rigger())*!/
         .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
+        .pipe(reload({stream: true}))
+        .pipe(browserSync.stream());*/
 
 
     gulp.src(path.src.style)
-        .pipe(rigger())
+        /*.pipe(rigger())*/
+        .pipe(plumber())
         .pipe(sourcemaps.init())
+        .pipe(postcss(processors))
         .pipe(sass({
             includePaths: ['src/style/'],
             outputStyle: 'compressed',
             sourceMap: true,
             errLogToConsole: true
         }))
+        .pipe(uncss({
+        html: [path.build.html+'*.html']
+        }))
+        .pipe(prefixer({browsers: ['last 30 version']}))
+        .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
+       /* .pipe(csscomb())*/
 
-        .pipe(sourcemaps.write())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
+        .pipe(reload({stream: true}))
+        .pipe(browserSync.stream());
 
-    gulp.src([path.build.css+'/plugins.css',path.build.css+'/main.css'])
+    /*gulp.src([path.build.css+'/plugins.css',path.build.css+'/main.css'])
 
         .pipe(concat('style.css'))
         .pipe(gulp.dest(path.build.css))
-        /*  .pipe(uncss({
+        /!*  .pipe(uncss({
          html: [path.build.html+'*.html']
-         }))*/
-        /*     .pipe(postcss(processors))*/
+         }))*!/
+        /!*     .pipe(postcss(processors))*!/
         .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
         .pipe(prefixer({browsers: ['last 30 version']}))
         .pipe(csscomb())
-        /*  .pipe(cssbeautify({
+        /!*  .pipe(cssbeautify({
          indent: '   ',
          /!*openbrace: 'separate-line',*!/
          autosemicolon: true
-         }))*/
+         }))*!/
         .pipe(gulp.dest(path.build.css))
-        .pipe(reload({stream: true}));
+        .pipe(reload({stream: true}));*/
 });
 
 gulp.task('image:build', function () {
@@ -182,3 +193,4 @@ gulp.task('watch', function(){
 
 
 gulp.task('default', ['build', 'webserver', 'watch']);
+

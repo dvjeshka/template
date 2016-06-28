@@ -1,13 +1,30 @@
+@import '../../bower_components/normalize.css/normalize.css';
 
+@import '../../bower_components/slick-carousel/slick/slick.css';
+@import '../../bower_components/slick-carousel/slick/slick-theme.css';
 
-/*= fonts.scss*/
+@import '../../bower_components/fancybox/source/jquery.fancybox.css';
 
-/*= partials/page.scss*/
-/*= partials/header.scss*/
-/*= partials/menu.scss*/
-/*= partials/footer.scss*/
+@import 'fonts.scss';
 
-/*= partials/popup.scss*/
+@import 'partials/page.scss';
+@import 'partials/header.scss';
+@import 'partials/menu.scss';
+@import 'partials/footer.scss';
 
-/*= partials/form.scss*/
-/*= partials/slider.scss*/
+@import 'partials/popup.scss';
+
+@import 'partials/form.scss';
+@import 'partials/slider.scss';
+
+/* fonts.scss*/
+
+/* partials/page.scss*/
+/* partials/header.scss*/
+/* partials/menu.scss*/
+/* partials/footer.scss*/
+
+/* partials/popup.scss*/
+
+/* partials/form.scss*/
+/* partials/slider.scss*/
