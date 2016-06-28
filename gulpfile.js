@@ -88,7 +88,9 @@ gulp.task('js:build', function () {
 
     gulp.src(path.src.js)
         .pipe(rigger())
+
         /*  .pipe(uglify())*/
+
         .pipe(gulp.dest(path.build.js))
         .pipe(reload({stream: true}));
 });
@@ -110,15 +112,15 @@ gulp.task('style:build', function () {
         .pipe(postcss(processors))
         .pipe(sass({
             includePaths: ['src/style/'],
-            outputStyle: 'compressed',
+          /*  outputStyle: 'compressed',*/
             sourceMap: true,
             errLogToConsole: true
         }))
         .pipe(uncss({
-        html: [path.build.html+'*.html']
+        html: [path.build.html+'*.html','http://localhost:9000']
         }))
-        .pipe(prefixer({browsers: ['last 30 version']}))
         .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
+        .pipe(prefixer({browsers: ['last 30 version']}))
        /* .pipe(csscomb())*/
 
         .pipe(sourcemaps.write('.'))
