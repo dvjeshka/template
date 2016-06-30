@@ -154,7 +154,7 @@ gulp.task('style:build', function () {
 
 
 gulp.task('image:build', function () {
-    return gulp.src(path.src.img)
+     gulp.src(path.src.img)
         .pipe(newer(path.build.img))
         .pipe(imagemin({
             progressive: true,
@@ -178,11 +178,10 @@ gulp.task('build', [
     'js:build',
     'style:build',
     'fonts:build',
-    'image:build',
-    'image:filter'
+    'image:build'
 ]);
 
-gulp.task('image:filter',['image:build'], function () {
+gulp.task('image:filter', function () {
     return gulp.src([path.build.img+'**/*', path.build.css+'*.css', path.build.html+'*.html'])
         .pipe(plumber())
         .pipe(unusedImages({}))
