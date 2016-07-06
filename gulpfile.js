@@ -119,7 +119,8 @@ gulp.task('style:build', function () {
             errLogToConsole: true
         }))
         .pipe(uncss({
-        html: [path.build.html+'*.html','http://localhost:9000']
+        html: [path.build.html+'*.html','http://localhost:9000'],
+            outtime:2000
         }))
         .pipe(cleanCSS({keepBreaks:true,compatibility: 'ie8'}))
         .pipe(prefixer({browsers: ['last 30 version']}))

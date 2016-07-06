@@ -146,6 +146,34 @@ $(".fancybox").fancybox({
     }
 
 });
+
+
+/*jQuery(function($) {
+
+    if($('.fix').length) {
+        var fix = $('.fix'),
+            fixTop = fix.offset().top;
+        /!*
+         fix.after('<div class="psevdo-fix" style="display: none; height: '+fix.height()+'px" />');*!/
+
+        $(window).scroll(function () {
+
+            if ($(window).scrollTop() > fixTop){
+                fix.css({
+                    'position': 'fixed',
+                    'top': '0px',
+                    'z-index': 999,
+                    'width': "100%"
+                })
+                /!*  $(".psevdo-fix").show(0);*!/
+
+            } else {
+                fix.attr("style", "");
+                /!* $(".psevdo-fix").hide(0);*!/
+            }
+        });
+    }
+});*/
 $('.js-styler').styler();
 
 var inputWrap="<div class='form__input-wrap' style='display: inline-block'></div>";
